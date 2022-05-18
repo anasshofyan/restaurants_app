@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurants_app/search_menu.dart';
 import 'detail_screen.dart';
 import 'model/menu_item.dart';
 
@@ -20,7 +21,8 @@ class MainScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  // do something
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchMenu()));
                 },
               )
             ],
