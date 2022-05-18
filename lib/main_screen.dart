@@ -16,11 +16,11 @@ class MainScreen extends StatelessWidget {
           body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth <= 600) {
-                return const TourismPlaceList();
+                return const MenuList();
               } else if (constraints.maxWidth <= 1200) {
-                return const TourismPlaceGrid(gridCount: 4);
+                return const MenuListGrid(gridCount: 4);
               } else {
-                return const TourismPlaceGrid(gridCount: 6);
+                return const MenuListGrid(gridCount: 6);
               }
             },
           ),
@@ -30,10 +30,10 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class TourismPlaceGrid extends StatelessWidget {
+class MenuListGrid extends StatelessWidget {
   final int gridCount;
 
-  const TourismPlaceGrid({Key? key, required this.gridCount}) : super(key: key);
+  const MenuListGrid({Key? key, required this.gridCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +90,8 @@ class TourismPlaceGrid extends StatelessWidget {
   }
 }
 
-class TourismPlaceList extends StatelessWidget {
-  const TourismPlaceList({Key? key}) : super(key: key);
+class MenuList extends StatelessWidget {
+  const MenuList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,32 +107,74 @@ class TourismPlaceList extends StatelessWidget {
               }));
             },
             child: Card(
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image.asset(menuItem.imageAsset),
+                    child: Container(
+                        width: 90,
+                        height: 90,
+                        alignment: Alignment.center,
+                        child: Image.asset(menuItem.imageAsset)),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(14, 0, 14, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             menuItem.name,
-                            style: const TextStyle(fontSize: 16.0),
+                            style: const TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.w800),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          // Text(menuItem.location),
+                          Row(children: [
+                            Container(
+                                height: 15,
+                                width: 15,
+                                alignment: Alignment.center,
+                                child:
+                                    Image.asset('assets/images/ic_star.png')),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text('4.6',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400))
+                          ]),
+                          SizedBox(
+                            height: 14,
+                          ),
+                          Text(
+                            menuItem.price,
+                            style: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.w500),
+                          ),
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: OutlinedButton(
+                        onPressed: null,
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0))),
+                        ),
+                        child: const Text('+',
+                            style: TextStyle(color: Colors.blue)),
+                      )),
                 ],
               ),
             ),
