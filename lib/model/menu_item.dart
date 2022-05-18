@@ -3,7 +3,7 @@ class MenuItem {
   String description;
   String price;
   String imageAsset;
-  int rating;
+  String rating;
   List<String> imageUrls;
 
   MenuItem({
@@ -21,8 +21,8 @@ var menuItemList = [
     name: 'Ayam Goreng',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 25000',
-    rating: 4,
+    price: 'Rp 25.000',
+    rating: "4.5",
     imageAsset: 'assets/images/ayam.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -34,8 +34,8 @@ var menuItemList = [
     name: 'Lele Goreng',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 23000',
-    rating: 4,
+    price: 'Rp 23.000',
+    rating: "4.5",
     imageAsset: 'assets/images/lele.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -47,8 +47,8 @@ var menuItemList = [
     name: 'Gurame Goreng',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 33000',
-    rating: 4,
+    price: 'Rp 33.000',
+    rating: "4.5",
     imageAsset: 'assets/images/gurame.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -60,8 +60,8 @@ var menuItemList = [
     name: 'Udang Goreng Krispi',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 28000',
-    rating: 4,
+    price: 'Rp 28.000',
+    rating: "4.4",
     imageAsset: 'assets/images/udang.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -73,8 +73,8 @@ var menuItemList = [
     name: 'Tahu Tempe',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 15000',
-    rating: 4,
+    price: 'Rp 15.000',
+    rating: "4.3",
     imageAsset: 'assets/images/tahu.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -86,8 +86,8 @@ var menuItemList = [
     name: 'Tumis Kangkung',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 15000',
-    rating: 4,
+    price: 'Rp 15.000',
+    rating: "4.4",
     imageAsset: 'assets/images/kangkung.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -99,8 +99,8 @@ var menuItemList = [
     name: 'Terong Goreng',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 13000',
-    rating: 4,
+    price: 'Rp 13.000',
+    rating: "4.3",
     imageAsset: 'assets/images/terong.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -112,8 +112,8 @@ var menuItemList = [
     name: 'Kol Goreng',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 12000',
-    rating: 4,
+    price: 'Rp 12.000',
+    rating: "4.3",
     imageAsset: 'assets/images/kol.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -125,8 +125,8 @@ var menuItemList = [
     name: 'Nasi Putih',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 6000',
-    rating: 4,
+    price: 'Rp 6.000',
+    rating: "4.0",
     imageAsset: 'assets/images/nasi.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -138,8 +138,8 @@ var menuItemList = [
     name: 'Es Jeruk',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 8000',
-    rating: 4,
+    price: 'Rp 8.000',
+    rating: "4.3",
     imageAsset: 'assets/images/es_jeruk.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -151,8 +151,8 @@ var menuItemList = [
     name: 'Es Teh',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 7000',
-    rating: 4,
+    price: 'Rp 7.000',
+    rating: "4.5",
     imageAsset: 'assets/images/es_teh.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
@@ -164,8 +164,8 @@ var menuItemList = [
     name: 'Air Mineral Aqua 250ml',
     description:
         '"Mie Gacoan" adalah sebuah merk dagang dari jaringan restaurant mie pedas no 1 di indonesia, yang menjadi anak perusahaan PT Pesta Pora Abadi.',
-    price: 'Rp 5000',
-    rating: 4,
+    price: 'Rp 5.000',
+    rating: '4.4',
     imageAsset: 'assets/images/air.png',
     imageUrls: [
       'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg',
