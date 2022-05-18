@@ -11,8 +11,20 @@ class MainScreen extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
           appBar: AppBar(
-              title: const Text('Pecel Lele Cak Su'),
-              backgroundColor: Colors.blue[900]),
+            title: Text('Pecel Lele Cak Su'),
+            backgroundColor: Colors.blue[900],
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  // do something
+                },
+              )
+            ],
+          ),
           body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth <= 600) {
@@ -147,7 +159,7 @@ class MenuList extends StatelessWidget {
                             SizedBox(
                               width: 10,
                             ),
-                            Text('4.6',
+                            Text(menuItem.rating,
                                 style: TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.w400))
                           ]),
