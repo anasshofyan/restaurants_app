@@ -1,22 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'model/tourism_place.dart';
+import 'package:restaurants_app/model/menu_item.dart';
 
 var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
 
 class DetailScreen extends StatelessWidget {
-  final TourismPlace place;
+  final MenuItem menuItem;
 
-  const DetailScreen({Key? key, required this.place}) : super(key: key);
+  const DetailScreen({Key? key, required this.menuItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 800) {
-          return DetailWebPage(place: place);
+          return DetailWebPage(menuItem: menuItem);
         } else {
-          return DetailMobilePage(place: place);
+          return DetailMobilePage(menuItem: menuItem);
         }
       },
     );
@@ -24,9 +24,9 @@ class DetailScreen extends StatelessWidget {
 }
 
 class DetailMobilePage extends StatelessWidget {
-  final TourismPlace place;
+  final MenuItem menuItem;
 
-  const DetailMobilePage({Key? key, required this.place}) : super(key: key);
+  const DetailMobilePage({Key? key, required this.menuItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class DetailMobilePage extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Image.asset(place.imageAsset),
+                Image.asset(menuItem.imageAsset),
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -66,7 +66,7 @@ class DetailMobilePage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 16.0),
               child: Text(
-                place.name,
+                menuItem.name,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 30.0,
@@ -81,30 +81,10 @@ class DetailMobilePage extends StatelessWidget {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      const Icon(Icons.calendar_today),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        place.openDays,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      const Icon(Icons.access_time),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        place.openTime,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
                       const Icon(Icons.monetization_on),
                       const SizedBox(height: 8.0),
                       Text(
-                        place.ticketPrice,
+                        menuItem.price,
                         style: informationTextStyle,
                       ),
                     ],
@@ -115,7 +95,7 @@ class DetailMobilePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                place.description,
+                menuItem.description,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16.0,
@@ -127,7 +107,7 @@ class DetailMobilePage extends StatelessWidget {
               height: 150,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: place.imageUrls.map((url) {
+                children: menuItem.imageUrls.map((url) {
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
@@ -146,9 +126,9 @@ class DetailMobilePage extends StatelessWidget {
 }
 
 class DetailWebPage extends StatefulWidget {
-  final TourismPlace place;
+  final MenuItem menuItem;
 
-  const DetailWebPage({Key? key, required this.place}) : super(key: key);
+  const DetailWebPage({Key? key, required this.menuItem}) : super(key: key);
 
   @override
   _DetailWebPageState createState() => _DetailWebPageState();
@@ -175,7 +155,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text(
-                  'Wisata Bandung',
+                  'Pecel Lele Cak Su',
                   style: TextStyle(
                     fontFamily: 'Staatliches',
                     fontSize: 32,
@@ -189,7 +169,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                       child: Column(
                         children: [
                           ClipRRect(
-                            child: Image.asset(widget.place.imageAsset),
+                            child: Image.asset(widget.menuItem.imageAsset),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           const SizedBox(height: 16),
@@ -202,7 +182,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                               child: ListView(
                                 controller: _scrollController,
                                 scrollDirection: Axis.horizontal,
-                                children: widget.place.imageUrls.map((url) {
+                                children: widget.menuItem.imageUrls.map((url) {
                                   return Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: ClipRRect(
@@ -227,7 +207,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  widget.place.name,
+                                  widget.menuItem.name,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 30.0,
@@ -235,40 +215,13 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   ),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: <Widget>[
-                                      const Icon(Icons.calendar_today),
-                                      const SizedBox(width: 8.0),
-                                      Text(
-                                        widget.place.openDays,
-                                        style: informationTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                  const FavoriteButton(),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  const Icon(Icons.access_time),
-                                  const SizedBox(width: 8.0),
-                                  Text(
-                                    widget.place.openTime,
-                                    style: informationTextStyle,
-                                  ),
-                                ],
-                              ),
                               const SizedBox(height: 8.0),
                               Row(
                                 children: <Widget>[
                                   const Icon(Icons.monetization_on),
                                   const SizedBox(width: 8.0),
                                   Text(
-                                    widget.place.ticketPrice,
+                                    widget.menuItem.price,
                                     style: informationTextStyle,
                                   ),
                                 ],
@@ -277,7 +230,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 16.0),
                                 child: Text(
-                                  widget.place.description,
+                                  widget.menuItem.description,
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
                                     fontSize: 16.0,

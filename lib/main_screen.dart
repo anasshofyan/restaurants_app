@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'detail_screen.dart';
-import 'model/tourism_place.dart';
+import 'model/menu_item.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,8 +11,8 @@ class MainScreen extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Wisata Bandung'),
-          ),
+              title: const Text('Pecel Lele Cak Su'),
+              backgroundColor: Colors.blue[900]),
           body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               if (constraints.maxWidth <= 600) {
@@ -45,11 +45,11 @@ class TourismPlaceGrid extends StatelessWidget {
           crossAxisCount: gridCount,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          children: tourismPlaceList.map((place) {
+          children: menuItemList.map((item) {
             return InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DetailScreen(place: place);
+                  return DetailScreen(menuItem: item);
                 }));
               },
               child: Card(
@@ -58,7 +58,7 @@ class TourismPlaceGrid extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Image.asset(
-                        place.imageAsset,
+                        item.imageAsset,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -66,19 +66,19 @@ class TourismPlaceGrid extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        place.name,
+                        item.name,
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                      child: Text(
-                        place.location,
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                    //   child: Text(
+                    //     item.location,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -99,11 +99,11 @@ class TourismPlaceList extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ListView.builder(
         itemBuilder: (context, index) {
-          final TourismPlace place = tourismPlaceList[index];
+          final MenuItem menuItem = menuItemList[index];
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailScreen(place: place);
+                return DetailScreen(menuItem: menuItem);
               }));
             },
             child: Card(
@@ -112,7 +112,7 @@ class TourismPlaceList extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image.asset(place.imageAsset),
+                    child: Image.asset(menuItem.imageAsset),
                   ),
                   Expanded(
                     flex: 2,
@@ -122,13 +122,13 @@ class TourismPlaceList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            place.name,
+                            menuItem.name,
                             style: const TextStyle(fontSize: 16.0),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(place.location),
+                          // Text(menuItem.location),
                         ],
                       ),
                     ),
@@ -138,7 +138,7 @@ class TourismPlaceList extends StatelessWidget {
             ),
           );
         },
-        itemCount: tourismPlaceList.length,
+        itemCount: menuItemList.length,
       ),
     );
   }
