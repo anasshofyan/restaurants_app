@@ -37,7 +37,13 @@ class DetailMobilePage extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Image.asset(menuItem.imageAsset),
+                Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      menuItem.imageAsset,
+                      fit: BoxFit.cover,
+                    )),
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -64,28 +70,26 @@ class DetailMobilePage extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: Text(
-                menuItem.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: 'Staatliches',
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 16.0),
+              margin: const EdgeInsets.all(16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const Icon(Icons.monetization_on),
-                      const SizedBox(height: 8.0),
+                      Text(
+                        menuItem.name,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Staatliches',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 14,
+                      ),
                       Text(
                         menuItem.price,
-                        style: informationTextStyle,
+                        style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -96,28 +100,27 @@ class DetailMobilePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 menuItem.description,
-                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontFamily: 'Oxygen',
                 ),
               ),
             ),
-            Container(
-              height: 150,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: menuItem.imageUrls.map((url) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(url),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+            // Container(
+            //   height: 150,
+            //   child: ListView(
+            //     scrollDirection: Axis.horizontal,
+            //     children: menuItem.imageUrls.map((url) {
+            //       return Padding(
+            //         padding: const EdgeInsets.all(4.0),
+            //         child: ClipRRect(
+            //           borderRadius: BorderRadius.circular(10),
+            //           child: Image.network(url),
+            //         ),
+            //       );
+            //     }).toList(),
+            //   ),
+            // ),
           ],
         ),
       ),
