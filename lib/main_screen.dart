@@ -27,10 +27,15 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Colors.blue[900],
           actions: <Widget>[
             IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
+              icon: isShow
+                  ? Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    )
+                  : Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
               onPressed: showInput,
             )
           ],
