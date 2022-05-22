@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurants_app/search_menu.dart';
 import 'detail_screen.dart';
 import 'model/menu_item.dart';
 
