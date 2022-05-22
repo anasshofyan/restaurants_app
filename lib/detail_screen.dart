@@ -5,7 +5,7 @@ import 'package:restaurants_app/model/menu_item.dart';
 var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
 
 class DetailScreen extends StatelessWidget {
-  final MenuItem menuItem;
+  final MenuItemResto menuItem;
 
   const DetailScreen({Key? key, required this.menuItem}) : super(key: key);
 
@@ -24,7 +24,7 @@ class DetailScreen extends StatelessWidget {
 }
 
 class DetailMobilePage extends StatelessWidget {
-  final MenuItem menuItem;
+  final MenuItemResto menuItem;
 
   const DetailMobilePage({Key? key, required this.menuItem}) : super(key: key);
 
@@ -70,20 +70,52 @@ class DetailMobilePage extends StatelessWidget {
               ],
             ),
             Container(
+              margin: EdgeInsets.fromLTRB(4, 4, 16, 0),
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: menuItem.imageUrls.map((url) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(url),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            Container(
               margin: const EdgeInsets.all(16),
               child: Row(
                 children: <Widget>[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        menuItem.name,
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Staatliches',
-                          fontWeight: FontWeight.bold,
+                      Row(children: <Widget>[
+                        Text(
+                          menuItem.name,
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontFamily: 'Staatliches',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                            height: 15,
+                            width: 15,
+                            alignment: Alignment.center,
+                            child: Image.asset('assets/images/ic_star.png')),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(menuItem.rating,
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w400))
+                      ]),
                       SizedBox(
                         height: 14,
                       ),
@@ -97,7 +129,7 @@ class DetailMobilePage extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: Text(
                 menuItem.description,
                 style: const TextStyle(
@@ -106,21 +138,6 @@ class DetailMobilePage extends StatelessWidget {
                 ),
               ),
             ),
-            // Container(
-            //   height: 150,
-            //   child: ListView(
-            //     scrollDirection: Axis.horizontal,
-            //     children: menuItem.imageUrls.map((url) {
-            //       return Padding(
-            //         padding: const EdgeInsets.all(4.0),
-            //         child: ClipRRect(
-            //           borderRadius: BorderRadius.circular(10),
-            //           child: Image.network(url),
-            //         ),
-            //       );
-            //     }).toList(),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -129,7 +146,7 @@ class DetailMobilePage extends StatelessWidget {
 }
 
 class DetailWebPage extends StatefulWidget {
-  final MenuItem menuItem;
+  final MenuItemResto menuItem;
 
   const DetailWebPage({Key? key, required this.menuItem}) : super(key: key);
 
