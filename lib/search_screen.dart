@@ -1,61 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:restaurants_app/data/model/menu_item.dart';
 import 'package:restaurants_app/data/state/list_resto/cubit/list_resto_cubit.dart';
+import 'package:restaurants_app/data/state/search_resto/cubit/search_resto_cubit.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _SearchScreenState extends State<SearchScreen> {
   bool isShow = false;
   final controller = TextEditingController();
-  List<MenuItemResto> menuItemResto = allMenuItem;
-  late ListRestoCubit _listRestoCubit;
+  late SearchRestoCubit _searchRestoCubit;
 
   void showInput() {
     setState(() {
-      isShow = !isShow;
+      _searchRestoCubit = SearchRestoCubit()..getSearchResto('Melting Pot');
     });
   }
 
   @override
   void initState() {
     super.initState();
-    _listRestoCubit = ListRestoCubit()..getListResto();
+    _searchRestoCubit = SearchRestoCubit()..getSearchResto('kita');
   }
 
   @override
   void dispose() {
-    _listRestoCubit.close();
+    _searchRestoCubit.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => _listRestoCubit,
+      create: (context) => _searchRestoCubit,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.brown,
             actions: <Widget>[
               IconButton(
                 icon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                onPressed: () => Get.toNamed('search-screen/'),
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onPressed: showInput,
               )
             ],
-            title: Text('Penyetan Cak Su')
+            title: Container(
+              width: double.infinity,
+              height: 40,
+              child: Center(
+                  child: TextField(
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Cari resto..',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 10)))),
+            ),
           ),
-          body: BlocBuilder<ListRestoCubit, ListRestoState>(
+          body: BlocBuilder<SearchRestoCubit, SearchRestoState>(
             builder: (context, state) {
-              if (state is ListRestoLoading) {
+              if (state is SearchRestoLoading) {
                 return Center(
                   child: SizedBox(
                     height: 25,
@@ -66,15 +78,16 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                 );
-              } else if (state is ListRestoSuccess) {
+              } else if (state is SearchRestoSuccess) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView(
-                      children: List.generate(state.data.count, (index) {
+                      children:
+                          List.generate(state.data.restaurants.length, (index) {
                     return InkWell(
                       onTap: () {
                         Get.toNamed(
-                            '/detail-screen/${state.data.restaurants[index].id}', );
+                            '/detail-screen/${state.data.restaurants[index].id}');
                       },
                       child: Card(
                         elevation: 0,
@@ -91,10 +104,12 @@ class _MainScreenState extends State<MainScreen> {
                                   height: 90,
                                   alignment: Alignment.center,
                                   child: Image.network(
-                                      'https://restaurant-api.dicoding.dev/images/medium/${state.data.restaurants[index].pictureId}', fit: BoxFit.cover,
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      alignment: Alignment.center,)),
+                                    'https://restaurant-api.dicoding.dev/images/medium/${state.data.restaurants[index].pictureId}',
+                                    fit: BoxFit.cover,
+                                    height: double.infinity,
+                                    width: double.infinity,
+                                    alignment: Alignment.center,
+                                  )),
                             ),
                             Expanded(
                               flex: 3,
@@ -162,21 +177,18 @@ class _MainScreenState extends State<MainScreen> {
                     );
                   })),
                 );
+              } else {
+                Center(
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: Text('Resto yang kamu cari tidak ada'),
+                  ),
+                );
               }
               return Container();
             },
           )),
     );
-  }
-
-  void searchMenu(String query) {
-    final suggestions = allMenuItem.where((menuItem) {
-      final menuTitle = menuItem.name.toLowerCase();
-      final input = query.toLowerCase();
-
-      return menuTitle.contains(input);
-    }).toList();
-    setState(() => menuItemResto = suggestions);
-    print(query);
   }
 }
