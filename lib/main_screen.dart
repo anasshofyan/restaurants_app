@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:restaurants_app/data/model/menu_item.dart';
 import 'package:restaurants_app/data/state/list_resto/cubit/list_resto_cubit.dart';
 import 'package:restaurants_app/api/api_provider.dart';
@@ -96,9 +97,8 @@ class _MainScreenState extends State<MainScreen> {
                       children: List.generate(state.data.count, (index) {
                     return InkWell(
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        //   return DetailScreen(menuItem: menuItem);
-                        // }));
+                        Get.toNamed(
+                            '/detail-screen/${state.data.restaurants[index].id}');
                       },
                       child: Card(
                         elevation: 0,
